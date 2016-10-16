@@ -155,7 +155,7 @@ public class CalculationTest extends JApplet implements Runnable {
 		}
 	}
 
-	// 回線の接続を行なう
+	// 回線の接続を実行
 	public boolean clientOpen(){
 		if(client == null){
 			client = new Client(host, port);  // Clientクラスの呼び出し
