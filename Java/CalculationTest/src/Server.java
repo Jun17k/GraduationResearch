@@ -1,4 +1,4 @@
-﻿import java.io.BufferedWriter;
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,13 +8,13 @@ import java.util.Calendar;
 
 public class Server implements Runnable {
 	final int MAX_CHANNELS = 1; // 最大チャネル数
-	Channel channel[] = new Channel[MAX_CHANNELS];  
+	Channel channel[] = new Channel[MAX_CHANNELS];
 	ServerSocket serversocket;    // 接続受け付け用ServerSocket
 	int port;                     // ポート番号
 	Thread thread;
-	
+
 	public static final int MAX_QUESTIONS = 50;	//問題数
-	
+
 	//日時の取得
 	Calendar calendar = Calendar.getInstance();
 	int year = calendar.get(Calendar.YEAR);
@@ -24,14 +24,14 @@ public class Server implements Runnable {
 	int minute = calendar.get(Calendar.MINUTE);
 	int second = calendar.get(Calendar.SECOND);
 	int millisecond = calendar.get(Calendar.MILLISECOND);
-	
+
 	String hour_min = "";
 	int msec;
-	
+
 	//足し算問題用変数
 	int i;
 	int j;
-	
+
 //	public static void main(String args[]) {
 //		if (args.length < 1) 
 //			System.out.println("%java Server port_number");
@@ -125,33 +125,33 @@ public class Server implements Runnable {
 			//出力先を作成する
 			String startdate = "";
 			startdate = startdate + year;
-			
+
 			if(month < 10){
 				startdate += "0" + month;
 			}else{
 				startdate += month;
 			}
-			
+
 			if(day < 10){
 				startdate += "0" + day;
 			}else{
 				startdate += day;
 			}
-			
+
 			startdate += "_";
-			
+
 			if(hour < 10){
 				startdate += "0" + hour;
 			}else{
 				startdate += hour;
 			}
-			
+
 			if(minute < 10){
 				startdate += "0" + minute;
 			}else{
 				startdate += minute;
 			}
-			
+
 //			fw = new FileWriter(".\\keisan_csv\\keisan_" + handle + "_" + year + "_" + month + "_" + day + "_" + hour + "_" + minute + "_" + second +  ".csv", false);  //※１
 			fw = new FileWriter("..\\keisan_csv\\" + user_name + "_" +  startdate + "keisan.csv", false);  //※１
 			pw = new PrintWriter(new BufferedWriter(fw));
@@ -171,23 +171,23 @@ public class Server implements Runnable {
 		minute = calendar.get(Calendar.MINUTE);
 		second = calendar.get(Calendar.SECOND);
 		millisecond = calendar.get(Calendar.MILLISECOND);
-		
+
 		hour_min = "";
-		
+
 		if(hour < 10){
 			hour_min += "0" + hour;
 		}else{
 			hour_min += hour;
 		}
-		
+
 		if(minute < 10){
 			hour_min += "0" + minute;
 		}else{
 			hour_min += minute;
 		}
-		
+
 		msec = second *1000 + millisecond;
-		
+
 		pw.print(hour_min + ",");
 		pw.print(msec + ",");
 		pw.print("0,0,0,0,0");
@@ -201,23 +201,23 @@ public class Server implements Runnable {
 		minute = calendar.get(Calendar.MINUTE);
 		second = calendar.get(Calendar.SECOND);
 		millisecond = calendar.get(Calendar.MILLISECOND);
-		
+
 		hour_min = "";
-		
+
 		if(hour < 10){
 			hour_min += "0" + hour;
 		}else{
 			hour_min += hour;
 		}
-		
+
 		if(minute < 10){
 			hour_min += "0" + minute;
 		}else{
 			hour_min += minute;
 		}
-		
+
 		msec = second *1000 + millisecond;
-		
+
 		pw.print(hour_min + ",");
 		pw.print(msec + ",");
 		pw.print(n + ",");
@@ -229,6 +229,7 @@ public class Server implements Runnable {
 		i = (int)(Math.random() * 100) + 1;
 		j = (int)(Math.random() * 100) + 1;
 
+
 		broadcast("+-------------------------+");
 		broadcast("第 " + n + "問");
 		broadcast(i + "+"  + j  + "= ");
@@ -238,8 +239,8 @@ public class Server implements Runnable {
 		if(i+j == ans)return true;
 		return false;
 	}
-}
 
+}
 
 
 

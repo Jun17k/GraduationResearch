@@ -1,4 +1,4 @@
-﻿/* チャット用アプレットプログラム */
+/* チャット用アプレットプログラム */
 
 import java.awt.Color;
 import java.awt.Container;
